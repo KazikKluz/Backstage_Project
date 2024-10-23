@@ -38,6 +38,7 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { PulumiResourcesPage } from '@internal/backstage-plugin-pulumi-resources';
 
 const app = createApp({
   apis,
@@ -108,6 +109,7 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+    <Route path="/pulumi-resources" element={<PulumiResourcesPage />} />
   </FlatRoutes>
 );
 
