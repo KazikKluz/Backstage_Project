@@ -6843,7 +6843,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@internal/backstage-plugin-backend-pulumi-resources-backend@workspace:^, @internal/backstage-plugin-backend-pulumi-resources-backend@workspace:plugins/backend-pulumi-resources-backend":
+"@internal/backstage-plugin-backend-pulumi-resources-backend@npm:^0.1.0, @internal/backstage-plugin-backend-pulumi-resources-backend@workspace:^, @internal/backstage-plugin-backend-pulumi-resources-backend@workspace:plugins/backend-pulumi-resources-backend":
   version: 0.0.0-use.local
   resolution: "@internal/backstage-plugin-backend-pulumi-resources-backend@workspace:plugins/backend-pulumi-resources-backend"
   dependencies:
@@ -14037,6 +14037,7 @@ __metadata:
     "@backstage/plugin-user-settings": "npm:^0.8.14"
     "@backstage/test-utils": "npm:^1.7.0"
     "@backstage/theme": "npm:^0.6.0"
+    "@internal/backstage-plugin-backend-pulumi-resources-backend": "npm:^0.1.0"
     "@internal/backstage-plugin-pulumi-resources": "npm:^0.1.0"
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"

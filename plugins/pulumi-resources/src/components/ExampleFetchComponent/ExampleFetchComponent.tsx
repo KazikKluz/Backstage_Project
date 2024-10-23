@@ -260,7 +260,7 @@ type DenseTableProps = {
 export const DenseTable = ({ users }: DenseTableProps) => {
   const classes = useStyles();
 
-  fetch(`http://localhost:7007/api/backend-pulumi-resources/testing`)
+  fetch(`http://localhost/api/backend-pulumi-resources/testing`)
     .then(response => response.json())
     .then(payload => console.log(payload));
   const columns: TableColumn[] = [
