@@ -28,6 +28,7 @@
     "@backstage/catalog-client": "^1.7.1",
     "@backstage/errors": "^1.2.4",
     "@backstage/plugin-catalog-node": "^1.13.1",
+    "@pulumi/pulumi": "^3.137.0",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
     "zod": "^3.22.4"
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@backstage/backend-test-utils": "^1.0.1",
     "@backstage/cli": "^0.28.0",
+    "@internal/backstage-plugin-pulumi-resources": "workspace:^",
     "@types/express": "*",
     "@types/supertest": "^2.0.12",
     "supertest": "^6.2.4"

@@ -8,6 +8,7 @@ import request from 'supertest';
 
 import { createRouter } from './router';
 import { TodoListService } from './services/TodoListService/types';
+import { PulumiResourceService } from './services/PulumiResourceService/types';
 
 const mockTodoItem = {
   title: 'Do the thing',
@@ -21,16 +22,21 @@ const mockTodoItem = {
 describe('createRouter', () => {
   let app: express.Express;
   let todoListService: jest.Mocked<TodoListService>;
-
+  let pulumiResourceService: jest.Mocked<PulumiResourceService>;
   beforeEach(async () => {
     todoListService = {
       createTodo: jest.fn(),
       listTodos: jest.fn(),
       getTodo: jest.fn(),
     };
+
+    pulumiResourceService = {
+      testing: jest.fn(),
+    };
     const router = await createRouter({
       httpAuth: mockServices.httpAuth(),
       todoListService,
+      pulumiResourceService,
     });
     app = express();
     app.use(router);

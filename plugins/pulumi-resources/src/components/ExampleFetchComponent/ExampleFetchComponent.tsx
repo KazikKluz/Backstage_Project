@@ -260,6 +260,9 @@ type DenseTableProps = {
 export const DenseTable = ({ users }: DenseTableProps) => {
   const classes = useStyles();
 
+  fetch(`http://localhost:7007/api/backend-pulumi-resources/testing`)
+    .then(response => response.json())
+    .then(payload => console.log(payload));
   const columns: TableColumn[] = [
     { title: 'Avatar', field: 'avatar' },
     { title: 'Name', field: 'name' },
@@ -293,7 +296,6 @@ export const DenseTable = ({ users }: DenseTableProps) => {
 };
 
 export const ExampleFetchComponent = () => {
-
   const { value, loading, error } = useAsync(async (): Promise<User[]> => {
     // Would use fetch in a real world example
     return exampleUsers.results;

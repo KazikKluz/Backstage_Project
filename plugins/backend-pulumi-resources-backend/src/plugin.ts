@@ -5,6 +5,7 @@ import {
 import { createRouter } from './router';
 import { catalogServiceRef } from '@backstage/plugin-catalog-node/alpha';
 import { createTodoListService } from './services/TodoListService';
+import { createPulumiResourceService } from './services/PulumiResourceService';
 
 /**
  * backendPulumiResourcesPlugin backend plugin
@@ -29,10 +30,17 @@ export const backendPulumiResourcesPlugin = createBackendPlugin({
           catalog,
         });
 
+        const pulumiResourceService = await createPulumiResourceService({
+          logger,
+          auth,
+          catalog,
+        });
+
         httpRouter.use(
           await createRouter({
             httpAuth,
             todoListService,
+            pulumiResourceService,
           }),
         );
       },
