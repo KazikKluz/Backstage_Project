@@ -16,7 +16,7 @@ export const PulumiResourcesPage = pulumiResourcesPlugin.provide(
   createRoutableExtension({
     name: 'PulumiResourcesPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/PulumiResources').then(m => m.PulumiResources),
     mountPoint: rootRouteRef,
   }),
 );

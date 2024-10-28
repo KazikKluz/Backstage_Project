@@ -1,6 +1,5 @@
 app:
   title: MyBackstage
-  baseUrl: http://localhost
 
 organization:
   name: My Company

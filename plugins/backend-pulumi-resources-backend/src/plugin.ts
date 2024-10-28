@@ -4,7 +4,6 @@ import {
 } from '@backstage/backend-plugin-api';
 import { createRouter } from './router';
 import { catalogServiceRef } from '@backstage/plugin-catalog-node/alpha';
-import { createTodoListService } from './services/TodoListService';
 import { createPulumiResourceService } from './services/PulumiResourceService';
 
 /**
@@ -24,12 +23,6 @@ export const backendPulumiResourcesPlugin = createBackendPlugin({
         catalog: catalogServiceRef,
       },
       async init({ logger, auth, httpAuth, httpRouter, catalog }) {
-        const todoListService = await createTodoListService({
-          logger,
-          auth,
-          catalog,
-        });
-
         const pulumiResourceService = await createPulumiResourceService({
           logger,
           auth,
@@ -39,7 +32,6 @@ export const backendPulumiResourcesPlugin = createBackendPlugin({
         httpRouter.use(
           await createRouter({
             httpAuth,
-            todoListService,
             pulumiResourceService,
           }),
         );

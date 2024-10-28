@@ -23,11 +23,15 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
+    "@aws-sdk/client-resource-groups-tagging-api": "^3.679.0",
+    "@aws-sdk/credential-providers": "^3.679.0",
     "@backstage/backend-defaults": "^0.5.1",
     "@backstage/backend-plugin-api": "^1.0.1",
     "@backstage/catalog-client": "^1.7.1",
+    "@backstage/core-plugin-api": "^1.10.0",
     "@backstage/errors": "^1.2.4",
     "@backstage/plugin-catalog-node": "^1.13.1",
+    "@pulumi/aws": "^6.56.1",
     "@pulumi/pulumi": "^3.137.0",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
