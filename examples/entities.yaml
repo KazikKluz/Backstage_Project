@@ -4,6 +4,8 @@ apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
   name: examples
+  annotations:
+      pulumi.com/orga-slug: <Pulumi Cloud: org>
 spec:
   owner: guests
 ---

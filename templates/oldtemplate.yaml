@@ -1,0 +1,24 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: kubernetes-template
+  title: Kubernetes Cluster
+  description: |
+    A template for creating a new Kubernetes Cluster.
+  tags:
+  - pulumi
+  - kubernetes
+spec:
+  steps:
+  - id: pulumi-new-component
+    name: Cookie cut the component Pulumi project
+    action: pulumi:new
+    input:
+      name: "${{ parameters.component_id }}-infrastructure"
+      description: ${{ parameters.description | dump }}
+      organization: ediri
+      stack: ${{ parameters.stack }}
+      template: "https://github.com/my-silly-organisation/microservice-civo/tree/main/infrastructure-${{ parameters.cloud }}-${{ parameters.language }}"
+      config:
+        "node:node_count": "${{ parameters.nodeCount }}"
+      folder: .

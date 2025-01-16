@@ -57,6 +57,7 @@
   "dependencies": {
     "@aws-sdk/client-resource-groups-tagging-api": "^3.679.0",
     "@aws-sdk/credential-providers": "^3.679.0",
+    "@backstage/plugin-github-actions": "^0.6.16",
     "@pulumi/aws": "^6.56.1",
     "@pulumi/pulumi": "^3.137.0"
   }

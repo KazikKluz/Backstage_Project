@@ -47,6 +47,13 @@ proxy:
     '/users':
       target: 'https://jsonplaceholder.typicode.com/users'
       changeOrigin: true
+    '/pulumi':
+      target: 'https://api.pulumi.com/api'
+      changeOrigin: true
+      headers:
+      Authorization: token ${PULUMI_ACCESS_TOKEN}
+      Accept: application/vnd.pulumi+8
+      Content-Type: application/json
   ### Example for how to add a proxy endpoint for the frontend.
   ### A typical reason to do this is to handle HTTPS and CORS for internal services.
   # endpoints:
@@ -85,17 +92,21 @@ catalog:
     - type: file
       target: ../../examples/entities.yaml
 
-    # Local example template
-    - type: file
-      target: ../../examples/template/template.yaml
-      rules:
-        - allow: [Template]
-
     # Local example organizational data
     - type: file
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+    
+  providers:
+    pulumi:
+      default:
+        api: https://api.pulumi.com
+        organization: KazikKluz
+        pulumiAccessToken: ${PULUMI_ACCESS_TOKEN}
+        schedule:
+          frequency: PT10M
+          timeout: PT50M
 
     ## Uncomment these lines to add more example data
     # - type: url

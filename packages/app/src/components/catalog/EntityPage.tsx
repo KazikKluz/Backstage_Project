@@ -59,6 +59,27 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
+import {
+  isPulumiAvailable,
+  EntityPulumiCard,
+  EntityPulumiMetdataCard,
+  PulumiComponent,
+} from '@pulumi/backstage-plugin-pulumi';
+
+import {
+  EntityGithubActionsContent,
+  isGithubActionsAvailable,
+  EntityRecentGithubActionsRunsCard,
+} from '@backstage/plugin-github-actions';
+
+const pulumiContent = (
+  <EntitySwitch>
+    <EntitySwitch.Case if={isPulumiAvailable}>
+      <PulumiComponent />
+    </EntitySwitch.Case>
+  </EntitySwitch>
+);
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -71,13 +92,11 @@ const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
   // You can for example enforce that all components of type 'service' should use GitHubActions
   <EntitySwitch>
-    {/*
-      Here you can add support for different CI/CD services, for example
-      using @backstage-community/plugin-github-actions as follows:
-      <EntitySwitch.Case if={isGithubActionsAvailable}>
-        <EntityGithubActionsContent />
-      </EntitySwitch.Case>
-     */}
+    {/* Here you can add support for different CI/CD services, for example
+      using @backstage-community/plugin-github-actions as follows: */}
+    <EntitySwitch.Case if={isGithubActionsAvailable}>
+      <EntityGithubActionsContent />
+    </EntitySwitch.Case>
 
     <EntitySwitch.Case>
       <EmptyState
@@ -142,6 +161,12 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+    <Grid item md={6}>
+      <EntityRecentGithubActionsRunsCard limit={4} variant="gridItem" />
+    </Grid>
+    <Grid item md={6}>
+      <EntityPulumiCard variant="gridItem" />
+    </Grid>
   </Grid>
 );
 
@@ -150,8 +175,15 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
+    <EntityLayout.Route path="/pulumi" title="Pulumi" if={isPulumiAvailable}>
+      {pulumiContent}
+    </EntityLayout.Route>
 
-    <EntityLayout.Route path="/ci-cd" title="CI/CD">
+    <EntityLayout.Route
+      path="/ci-cd"
+      title="CI/CD"
+      if={isGithubActionsAvailable}
+    >
       {cicdContent}
     </EntityLayout.Route>
 
@@ -340,6 +372,13 @@ const systemPage = (
         <Grid item md={6}>
           <EntityAboutCard variant="gridItem" />
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case if={isPulumiAvailable}>
+            <Grid item md={6}>
+              <EntityPulumiMetdataCard />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid item md={6} xs={12}>
           <EntityCatalogGraphCard variant="gridItem" height={400} />
         </Grid>

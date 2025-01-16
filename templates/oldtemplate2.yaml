@@ -1,0 +1,25 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: kubernetes-template
+  title: Kubernetes Cluster
+  description: |
+    A template for creating a new Kubernetes Cluster.
+  tags:
+  - pulumi
+  - kubernetes
+spec:
+  steps:
+  - id: pulumi-deploy-infrastructure
+    name: Deploy the infrastructure using Pulumi CLI
+    action: pulumi:up
+    input:
+      deployment: false
+      name: "${{ parameters.component_id }}-infrastructure"
+      repoUrl: "https://github.com/${{ (parameters.repoUrl | parseRepoUrl)['owner'] }}/${{ (parameters.repoUrl | parseRepoUrl)['repo'] }}"
+      repoProjectPath: .
+      organization: ediri
+      outputs:
+      - kubeconfig
+      - ClusterId
+      stack: ${{ parameters.stack }}

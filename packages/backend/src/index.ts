@@ -51,4 +51,9 @@ backend.add(import('@backstage/plugin-kubernetes-backend/alpha'));
 backend.add(
   import('@internal/backstage-plugin-backend-pulumi-resources-backend'),
 );
+
+// pulumi scaffolder
+backend.add(import('@pulumi/backstage-scaffolder-backend-pulumi'));
+backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
+
 backend.start();

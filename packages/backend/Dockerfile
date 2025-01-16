@@ -29,8 +29,21 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get install -y --no-install-recommends libsqlite3-dev && \
     rm -rf /var/lib/apt/lists/*
 
+## Prepare for installation of Pulumi CLI
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates
+
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
+
+RUN <<EOF
+## Install pulumi and set to PATH
+curl -fsSL https://get.pulumi.com | sh
+EOF
+
+ENV PATH="/node/.pulumi/bin:${PATH}"
 
 # This should create the app dir as `node`.
 # If it is instead created as `root` then the `tar` command below will fail: `can't create directory 'packages/': Permission denied`.

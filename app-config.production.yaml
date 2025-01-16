@@ -49,12 +49,12 @@ catalog:
     - type: file
       target: ./examples/entities.yaml
 
-    # Local example template
-    - type: file
-      target: ./examples/template/template.yaml
+     # ec2-demo template
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/ec2-demo/template.yaml
       rules:
         - allow: [Template]
-
+    
     # Local example organizational data
     - type: file
       target: ./examples/org.yaml
