@@ -37,7 +37,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 
 RUN curl -fsSL https://get.pulumi.com | sh 
 RUN mkdir /usr/bin/.pulumi && mv /root/.pulumi/* /usr/bin/.pulumi/ 
-ENV PATH "$PATH:/usr/bin/.pulumi/bin/"
+ENV PATH="$PATH:/usr/bin/.pulumi/bin/"
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
