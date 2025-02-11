@@ -161,12 +161,19 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
-    <Grid item md={6}>
-      <EntityRecentGithubActionsRunsCard limit={4} variant="gridItem" />
-    </Grid>
-    <Grid item md={6}>
-      <EntityPulumiCard variant="gridItem" />
-    </Grid>
+
+    <EntitySwitch>
+      <EntitySwitch.Case if={isGithubActionsAvailable}>
+        <Grid item md={6}>
+          <EntityRecentGithubActionsRunsCard limit={4} variant="gridItem" />
+        </Grid>
+      </EntitySwitch.Case>
+      <EntitySwitch.Case if={isPulumiAvailable}>
+        <Grid item md={6}>
+          <EntityPulumiCard variant="gridItem" />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
 );
 

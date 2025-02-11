@@ -33,22 +33,21 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl ca-certificates
+    apt-get install -y --no-install-recommends ca-certificates curl python3.11-venv
+
+RUN curl -fsSL https://get.pulumi.com | sh 
+RUN mkdir /usr/bin/.pulumi && mv /root/.pulumi/* /usr/bin/.pulumi/ 
+ENV PATH "$PATH:/usr/bin/.pulumi/bin/"
 
 # From here on we use the least-privileged `node` user to run the backend.
 USER node
-
-RUN <<EOF
-## Install pulumi and set to PATH
-curl -fsSL https://get.pulumi.com | sh
-EOF
-
-ENV PATH="/node/.pulumi/bin:${PATH}"
 
 # This should create the app dir as `node`.
 # If it is instead created as `root` then the `tar` command below will fail: `can't create directory 'packages/': Permission denied`.
 # If this occurs, then ensure BuildKit is enabled (`DOCKER_BUILDKIT=1`) so the app dir is correctly created as `node`.
 WORKDIR /app
+
+RUN mkdir pulumi
 
 # Copy files needed by Yarn
 COPY --chown=node:node .yarn ./.yarn

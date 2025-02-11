@@ -6,7 +6,6 @@ metadata:
   annotations:
     github.com/project-slug: backstage/backstage
     backstage.io/techdocs-ref: dir:.
-    pulumi.com/project-slug: [Pulumi Cloud Name: org/stackname/stack]
 spec:
   type: website
   owner: john@example.com

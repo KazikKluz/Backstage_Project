@@ -43,17 +43,56 @@ catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
   # on how to get entities into the catalog.
+  providers:
+    pulumi:
+      default:
+        api: https://api.pulumi.com
+        organization: KazikKluz
+        pulumiAccessToken: ${PULUMI_ACCESS_TOKEN}
+        schedule:
+          frequency: PT10M
+          timeout: PT50M
   locations:
     # Local example data, replace this with your production config, these are intended for demo use only.
     # File locations are relative to the backend process, typically in a deployed context, such as in a Docker container, this will be the root
     - type: file
       target: ./examples/entities.yaml
 
-     # ec2-demo template
+    # ec2-demo template
     - type: url
       target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/ec2-demo/template.yaml
       rules:
         - allow: [Template]
+
+    # rds-demo template
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/rds-demo/template.yaml
+      rules:
+        - allow: [Template]
+
+    # eks-demo template
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/eks-demo/template.yaml
+      rules:
+        - allow: [Template]
+
+    # azure-vm
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/azure-vm/template.yaml
+      rules:
+        - allow: [Template]
+
+    # pulumi new
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/new-ec2-pulumi-plugin/template.yaml
+      rules:
+        - allow: [Template]
+    # pulumi up
+    - type: url
+      target: https://github.com/KazikKluz/backstage-catalog/blob/master/templates/up-ec2-pulumi-plugin/template.yaml
+      rules:
+        - allow: [Template]
+
     
     # Local example organizational data
     - type: file
