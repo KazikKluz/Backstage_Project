@@ -55,5 +55,6 @@ backend.add(
 // pulumi scaffolder
 backend.add(import('@pulumi/backstage-scaffolder-backend-pulumi'));
 backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
+backend.add(import('@pulumi/plugin-catalog-backend-module-pulumi/alpha'));
 
 backend.start();

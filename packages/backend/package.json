@@ -42,6 +42,7 @@
     "@backstage/plugin-techdocs-backend": "^1.11.5",
     "@internal/backstage-plugin-backend-pulumi-resources-backend": "workspace:^",
     "@pulumi/backstage-scaffolder-backend-pulumi": "^0.16.0",
+    "@pulumi/plugin-catalog-backend-module-pulumi": "^0.16.0",
     "app": "link:../app",
     "node-gyp": "^10.0.0",
     "pg": "^8.11.3"
