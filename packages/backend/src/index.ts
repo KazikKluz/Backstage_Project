@@ -57,4 +57,7 @@ backend.add(import('@pulumi/backstage-scaffolder-backend-pulumi'));
 backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
 backend.add(import('@pulumi/plugin-catalog-backend-module-pulumi/alpha'));
 
+// techdocs
+backend.add(import('@backstage/plugin-techdocs-backend'));
+
 backend.start();

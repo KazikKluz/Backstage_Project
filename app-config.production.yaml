@@ -38,6 +38,14 @@ auth:
         signIn:
           resolvers:
             - resolver: usernameMatchingUserEntityName
+    pulumi:
+      default:
+        api: https://api.pulumi.com
+        organization: KazikKluz
+        pulumiAccessToken: ${PULUMI_ACCESS_TOKEN}
+        schedule:
+          frequency: PT10M
+          timeout: PT50M
 
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
