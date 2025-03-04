@@ -63,24 +63,16 @@ proxy:
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
-# https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
-  builder: 'local' # Alternatives - 'external'
-  generator:
-    runIn: 'docker' # Alternatives - 'local'
-    dockerImage: 'spotify/techdocs'
-    pullImage: true
-    mkdocs:
-      omitTechdocsCorePlugin: false
-      defaultPlugins: ['techdocs-core']
+  builder: 'external' # Docs are built in CI/CD, not on the backend
   publisher:
     type: 'awsS3'
-    bucketName: 'techdocs-storage-ssad87f6asd'
-    credentials:
-      accessKeyId: ${AWS_ACCESS_KEY_ID}
-      secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
-
-       # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+    awsS3:
+      bucketName: 'techdocs-storage-ssad87f6asd'
+      region: 'eu-west-1' # Match your bucket’s region
+      credentials:
+        accessKeyId: ${AWS_ACCESS_KEY_ID}
+        secretAccessKey: ${AWS_SECRET_ACCESS_KEY}
 
 auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
